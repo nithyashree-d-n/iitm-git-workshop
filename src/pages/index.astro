@@ -13,19 +13,19 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 	<body>
 		<Header />
 		<main>
-			<h2>🚀 Git Workflows: From Development to Deployment</h2>
+			<h4>🚀 Git Workflows: From Development to Deployment</h4>
 			<p>
 				Welcome to our interactive workshop! This repository serves as a playground for learning 
 				Git workflows, pull requests, and collaborative development. You'll contribute a blog post 
 				about yourself and practice the complete Git workflow from development to deployment.
 			</p>
 			
-			<h2>📝 Your Mission: Create a Blog Post</h2>
+			<h5>📝 Your Mission: Create a Blog Post</h5>
 			<p>
 				Follow these steps to contribute your introduction and practice the Git workflow:
 			</p>
 
-			<h3>Step 1: Fork & Clone</h3>
+			<h5>Step 1: Fork & Clone</h5>
 			<ol>
 				<li><strong>Fork this repository</strong> to your GitHub account</li>
 				<li><strong>Clone your fork</strong> to your local machine:
@@ -34,11 +34,11 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 				<li><strong>Navigate to the project:</strong> <code>cd REPO-NAME</code></li>
 			</ol>
 
-			<h3>Step 2: Create Your Blog Post</h3>
+			<h5>Step 2: Create Your Blog Post</h5>
 			<ol>
 				<li><strong>Create a new markdown file</strong> in <code>src/content/blog/</code></li>
 				<li><strong>Name the file using your roll number:</strong> <code>YOUR-ROLL-NUMBER.md</code>
-					<br>Example: <code>CS21B001.md</code>, <code>ME22B042.md</code>, etc.
+					<br>Example: <code>24F100010.md</code>, <code>22DD100100</code>, etc.
 				</li>
 				<li><strong>Add the following frontmatter</strong> at the top of your file:</li>
 			</ol>
@@ -49,7 +49,7 @@ description: 'Meet [Your Name] - Roll Number: [Your Roll Number]'
 pubDate: '2024-11-10'
 ---</code></pre>
 
-			<h3>Step 3: Write Your Introduction</h3>
+			<h5>Step 3: Write Your Introduction</h5>
 			<p>Below the frontmatter, write a brief introduction including:</p>
 			<ul>
 				<li>Your name and roll number</li>
@@ -59,15 +59,24 @@ pubDate: '2024-11-10'
 				<li>Any programming languages or technologies you're excited about</li>
 			</ul>
 
-			<h3>Step 4: Complete the Git Workflow</h3>
+			<h5>Step 4: Update the Participants List</h5>
+			<p>Add yourself to the list of workshop participants:</p>
+			<ol>
+				<li><strong>Open the file:</strong> <code>src/content/blog/common.md</code></li>
+				<li><strong>Add your name and roll number</strong> to the participants list at the bottom</li>
+				<li><strong>Format:</strong> <code>- [Your Full Name] ([Your Roll Number])</code></li>
+			</ol>
+			<p><strong>Example:</strong> <code>- Ankit Mohan (24F100100)</code></p>
+
+			<h5>Step 5: Complete the Git Workflow</h5>
 			<ol>
 				<li><strong>Add your file:</strong> <code>git add src/content/blog/YOUR-ROLL-NUMBER.md</code></li>
-				<li><strong>Commit your changes:</strong> <code>git commit -m "Add introduction post by [Your Name]"</code></li>
+				<li><strong>Commit your changes:</strong> <code>git commit -m "feat: includes <roll_number> as participant"</code></li>
 				<li><strong>Push to your fork:</strong> <code>git push origin main</code></li>
 				<li><strong>Create a Pull Request</strong> from your fork to the original repository</li>
 			</ol>
 
-			<h3>💡 Example Blog Post Structure</h3>
+			<h5>� Example Blog Post Structure</h5>
 			<pre><code>---
 title: 'Introduction - Ankit Sharma'
 description: 'Meet Ankit Sharma - Roll Number: CS21B001'
@@ -76,26 +85,26 @@ pubDate: '2024-11-10'
 
 # Hello, I'm Ankit! 👋
 
-**Roll Number:** CS21B001  
-**Department:** Computer Science and Engineering
+**Roll Number:** 22F000001  
+
 
 ## About Me
 I'm passionate about web development and open source contributions. 
 I love working with JavaScript, Python, and learning about DevOps practices.
 
-## What I Hope to Learn
+## What I Learned in this Workshop
 Through this Git workshop, I'm excited to master:
 - Advanced Git workflows
 - Collaborative development practices  
 - Best practices for pull requests
 - Deployment strategies
 
-## Fun Fact
-I enjoy contributing to open source projects and have made contributions 
-to several JavaScript libraries!
+## Fun Fact About Me
+I can sleep for 15 hours in one go! 
+
 </code></pre>
 
-			<h3>🎯 Workshop Goals</h3>
+			<h5>🎯 Workshop Goals</h5>
 			<ul>
 				<li>Practice forking repositories</li>
 				<li>Learn proper commit message conventions</li>
@@ -103,11 +112,6 @@ to several JavaScript libraries!
 				<li>Experience code review processes</li>
 				<li>Understand deployment workflows</li>
 			</ul>
-
-			<p>
-				<strong>Questions?</strong> Ask your workshop instructor or check out the existing blog posts 
-				in <code>src/content/blog/</code> for examples!
-			</p>
 
 			<p>
 				Ready to get started? <a href="/blog">Check out the blog</a> to see existing posts 
