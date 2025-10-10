@@ -1,0 +1,109 @@
+name: CI/CD Pipeline
+
+# Trigger the workflow on push to main branch and pull requests
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+# Define jobs to run
+jobs:
+  # Job 1: Build and Test
+  build:
+    name: Build and Test
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the repository code
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Step 2: Setup Node.js environment
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+          cache: "npm"
+
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        run: npm ci
+
+      # Step 4: Build the project
+      - name: Build project
+        run: npm run build
+
+      # Step 5: Check if build artifacts were created
+      - name: Verify build output
+        run: |
+          if [ -d "dist" ]; then
+            echo "✅ Build successful! Output directory created."
+            ls -la dist/
+          else
+            echo "❌ Build failed! No output directory found."
+            exit 1
+          fi
+
+  # Job 2: Code Quality Check (runs in parallel with build)
+  code-quality:
+    name: Code Quality
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      # Basic file structure check
+      - name: Check project structure
+        run: |
+          echo "📁 Checking project structure..."
+          if [ -f "package.json" ]; then
+            echo "✅ package.json found"
+          fi
+          if [ -f "astro.config.mjs" ]; then
+            echo "✅ astro.config.mjs found"
+          fi
+          if [ -d "src" ]; then
+            echo "✅ src directory found"
+          fi
+          echo "📊 Project files count:"
+          find . -name "*.astro" | wc -l | xargs echo "Astro files:"
+          find . -name "*.ts" | wc -l | xargs echo "TypeScript files:"
+          find . -name "*.js" | wc -l | xargs echo "JavaScript files:"
+
+  # Job 3: Deployment simulation (runs after build succeeds)
+  deploy-simulation:
+    name: Deploy Simulation
+    needs: build # This job waits for build to complete successfully
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+
+    steps:
+      - name: Simulate deployment
+        run: |
+          echo "🚀 Simulating deployment process..."
+          echo "Environment: Production"
+          echo "Branch: ${{ github.ref_name }}"
+          echo "Commit: ${{ github.sha }}"
+          echo "Author: ${{ github.actor }}"
+          echo "✅ Deployment simulation completed!"
+
+# This workflow demonstrates:
+# 1. Multiple trigger events (push, pull request)
+# 2. Multiple jobs running in parallel and sequence
+# 3. Environment setup (Node.js)
+# 4. Dependency caching
+# 5. Build process
+# 6. Basic verification steps
+# 7. Conditional job execution
+# 8. Job dependencies (needs)
