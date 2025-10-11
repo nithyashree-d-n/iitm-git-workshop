@@ -9,3 +9,4 @@ pubDate: "2025-10-11"
 And the following participants contributed to the blog posts:
 
 - Ankit Mohan
+- Azmi Nabeel (24f2000799)
